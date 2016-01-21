@@ -52,7 +52,7 @@ int MyApplication::startup()
 	viewport->setBackgroundColour(Ogre::ColourValue(0.0,0.0,0.0));
 	camera->setAspectRatio(Ogre::Real(viewport->getActualWidth())/Ogre::Real(viewport->getActualHeight()));
 
-	_listener = new MyFrameListener();
+	_listener = new MyFrameListener(window);
 	loadResources();
 	createScene();
 	_root->addFrameListener(_listener);

@@ -4,14 +4,16 @@
 #include "OGRE/OgreRenderWindow.h"
 #include "OGRE/OgreConfigFile.h"
 #include "OGRE/OgreEntity.h"
+#include "OIS/OIS.h"
 
 class MyFrameListener : public Ogre::FrameListener
 {
+private:
+	OIS::InputManager* _InputManager;
+	OIS::Keyboard* _Keyboard;
+
 public:
-	MyFrameListener();
+	MyFrameListener(Ogre::RenderWindow* win);
 	~MyFrameListener();
 	bool frameStarted(const Ogre::FrameEvent& evt);
-	bool frameEnded(const Ogre::FrameEvent& evt);
-	bool frameRenderingQueued(const Ogre::FrameEvent& evt);
 };
-
