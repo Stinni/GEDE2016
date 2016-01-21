@@ -5,6 +5,7 @@
 #include "OGRE/OgreConfigFile.h"
 #include "OGRE/OgreEntity.h"
 #include "OGRE/OgreWindowEventUtilities.h"
+#include "OGRE/OgreMeshManager.h"
 #include "MyFrameListener.h"
 
 class MyApplication
@@ -12,6 +13,8 @@ class MyApplication
 private:
 	Ogre::SceneManager* _sceneManager;
 	Ogre::Root* _root;
+	Ogre::SceneNode* _SinbadNode;
+	Ogre::Entity* _SinbadEnt;
 	MyFrameListener* _listener;
 	bool _keepRunning;
 
@@ -23,4 +26,5 @@ public:
 	void createScene();
 	void renderOneFrame();
 	bool keepRunning();
+	void printAnimations(Ogre::Entity* ent);
 };
