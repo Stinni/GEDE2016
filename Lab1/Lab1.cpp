@@ -13,7 +13,7 @@ int main()
 		return -1;
 	}
  
-	Ogre::RenderWindow* window = root->initialise(true, "Ogre3D Beginners Guide");
+	Ogre::RenderWindow* window = root->initialise(true, "Ogre3D Beginners Guide - Lab1");
  
 	Ogre::SceneManager* sceneManager = root->createSceneManager(Ogre::ST_GENERIC);
  
