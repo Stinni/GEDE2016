@@ -56,7 +56,7 @@ int MyApplication::startup()
 	loadResources();
 	createScene();
 	_root->addFrameListener(_listener);
-	_root->startRendering();
+
 	return 0;
 }
 
@@ -65,4 +65,15 @@ void MyApplication::createScene()
 	Ogre::Entity* ent = _sceneManager->createEntity("Sinbad.mesh");
 	_sceneManager->getRootSceneNode()->attachObject(ent);
 	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+}
+
+void MyApplication::renderOneFrame()
+{
+	Ogre::WindowEventUtilities::messagePump();
+	_keepRunning = _root->renderOneFrame();
+}
+
+bool MyApplication::keepRunning()
+{
+	return _keepRunning;
 }
