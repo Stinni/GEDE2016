@@ -81,8 +81,8 @@ void MyApplication::createScene()
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
 	ground->setMaterialName("Examples/BeachStones");
 
-	cubenode->scale(0.04, 0.04, 0.04);
-	cubenode->setPosition(4.0, 0.0, 0.0);
+	cubenode->scale(0.03f, 0.03f, 0.03f);
+	cubenode->setPosition(0.5f, 3.5f, 0.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);

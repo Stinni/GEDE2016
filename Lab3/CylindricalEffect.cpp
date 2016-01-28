@@ -1,6 +1,5 @@
 #include "CylindricalEffect.h"
 
-
 CylindricalEffect::CylindricalEffect(Ogre::Entity* entity, Ogre::Vector3 position, Ogre::Vector3 velocity)
 {
 	_entity = entity;
@@ -14,15 +13,19 @@ CylindricalEffect::~CylindricalEffect()
 
 Ogre::Vector3 CylindricalEffect::getCartesian()
 {
+	float oldX = _position.x;
+	float y = _position.y;
+	float oldZ = _position.z;
+	float radius = sqrt(oldX*oldX+oldZ*oldZ);
+	float alpha = Ogre::Math::ATan(oldZ/oldX);
 	// Ogre::Math::Cos()
 	// Ogre::Math::Sin()
 	//X coordinate = cosine of the angle times the radius
-	float x = 1;
-	//Y coordinate = height
-	float y = 1;
+	float newX = Ogre::Math::Cos(alpha) * radius;
 	//Z Coordinate = sin(angle) times the radius
-	float z = 1;
-	return Ogre::Vector3(x, y, z);
+	float newZ = Ogre::Math::Sin(alpha) * radius;
+	return Ogre::Vector3(newX, y, newZ);
+	Ogre::Math::DegreesToRadians();
 }
 
 void CylindricalEffect::update(float dt) {
