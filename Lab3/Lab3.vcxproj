@@ -11,11 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CylindricalEffect.cpp" />
     <ClCompile Include="Lab3.cpp" />
     <ClCompile Include="MyApplication.cpp" />
     <ClCompile Include="MyFrameListener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CylindricalEffect.h" />
     <ClInclude Include="MyApplication.h" />
     <ClInclude Include="MyFrameListener.h" />
   </ItemGroup>

@@ -56,7 +56,7 @@ int MyApplication::startup()
 
 	loadResources();
 	createScene();
-	_listener = new MyFrameListener(window, camera, _SinbadNode, _SinbadEnt);
+	_listener = new MyFrameListener(window, camera, _SinbadNode, _myOgre);
 	_root->addFrameListener(_listener);
 
 	return 0;
@@ -68,18 +68,29 @@ void MyApplication::createScene()
 	Ogre::MeshManager::getSingleton().createPlane("plane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		plane, 1500, 1500, 200, 200, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
 	Ogre::Entity* ground = _sceneManager->createEntity("LightPlaneEntity", "plane");
-	_SinbadEnt = _sceneManager->createEntity("Sinbad.mesh");
+	_myOgre = _sceneManager->createEntity("Sinbad.mesh");
 	//printAnimations(_SinbadEnt);
 	_SinbadNode = _sceneManager->getRootSceneNode()->createChildSceneNode();
-	
+	_myCube = _sceneManager->createEntity("Cube.mesh");
+	Ogre::SceneNode* cubenode = _myOgre->getParentSceneNode()->createChildSceneNode();
+	cubenode->attachObject(_myCube);
+
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
 	ground->setMaterialName("Examples/BeachStones");
-	_SinbadNode->attachObject(_SinbadEnt);
+	_SinbadNode->attachObject(_myOgre);
+
+	cubenode->scale(0.01, 0.01, 0.01);
+	cubenode->setPosition(2.0, 0.0, 0.0);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDirection(Ogre::Vector3(1, -1, 0));
 	_sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+
+	Ogre::Light* plight = _sceneManager->createLight("Light2");
+	plight->setType(Ogre::Light::LT_POINT);
+	cubenode->attachObject(plight);
 }
 
 void MyApplication::renderOneFrame()

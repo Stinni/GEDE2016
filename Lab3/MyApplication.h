@@ -6,6 +6,7 @@
 #include "OGRE/OgreEntity.h"
 #include "OGRE/OgreWindowEventUtilities.h"
 #include "OGRE/OgreMeshManager.h"
+#include "OGRE/OgreMath.h"
 #include "MyFrameListener.h"
 
 class MyApplication
@@ -14,7 +15,8 @@ private:
 	Ogre::SceneManager* _sceneManager;
 	Ogre::Root* _root;
 	Ogre::SceneNode* _SinbadNode;
-	Ogre::Entity* _SinbadEnt;
+	Ogre::Entity* _myOgre;
+	Ogre::Entity* _myCube;
 	MyFrameListener* _listener;
 	bool _keepRunning;
 

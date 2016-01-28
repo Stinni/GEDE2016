@@ -22,8 +22,6 @@ MyFrameListener::MyFrameListener(Ogre::RenderWindow* win, Ogre::Camera* cam, Ogr
 	_aniState->setLoop(false);
 	_aniStateTop = ent->getAnimationState("RunTop");
 	_aniStateTop->setLoop(false);
-	_aniStateDance = ent->getAnimationState("Dance");
-	_aniStateDance->setLoop(true);
 }
 
 MyFrameListener::~MyFrameListener()
@@ -94,8 +92,6 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt)
 	{
 		_aniState->setEnabled(true);
 		_aniStateTop->setEnabled(true);
-		_aniStateDance->setTimePosition(0.0f);
-		_aniStateDance->setEnabled(false);
 		if(_aniState->hasEnded())
 		{
 			_aniState->setTimePosition(0.0f);
@@ -111,16 +107,10 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt)
 		_aniState->setEnabled(false);
 		_aniStateTop->setTimePosition(0.0f);
 		_aniStateTop->setEnabled(false);
-		_aniStateDance->setEnabled(true);
-		if(_aniStateDance->hasEnded())
-		{
-			_aniStateDance->setTimePosition(0.0f);
-		}
 	}
 
 	_aniState->addTime(evt.timeSinceLastFrame);
 	_aniStateTop->addTime(evt.timeSinceLastFrame);
-	_aniStateDance->addTime(evt.timeSinceLastFrame);
 
 	_Cam->moveRelative(translate*evt.timeSinceLastFrame * _movementspeed);
 	_Cam->yaw(Ogre::Radian(rotX));
