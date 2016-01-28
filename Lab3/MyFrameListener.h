@@ -5,6 +5,7 @@
 #include "OGRE/OgreConfigFile.h"
 #include "OGRE/OgreEntity.h"
 #include "OIS/OIS.h"
+#include "CylindricalEffect.h"
 
 class MyFrameListener : public Ogre::FrameListener
 {
@@ -17,11 +18,13 @@ private:
 	Ogre::AnimationState* _aniState;
 	Ogre::AnimationState* _aniStateTop;
 	Ogre::AnimationState* _aniStateDance;
+	CylindricalEffect* _ceffect;
 	float _movementspeed;
 	float _WalkingSpeed;
 
 public:
-	MyFrameListener(Ogre::RenderWindow* win, Ogre::Camera* cam, Ogre::SceneNode* node, Ogre::Entity* ent);
+	MyFrameListener(Ogre::RenderWindow* win, Ogre::Camera* cam, Ogre::SceneNode* node,
+		Ogre::Entity* ent, CylindricalEffect* ceffect);
 	~MyFrameListener();
 	bool frameStarted(const Ogre::FrameEvent& evt);
 };

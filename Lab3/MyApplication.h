@@ -8,16 +8,19 @@
 #include "OGRE/OgreMeshManager.h"
 #include "OGRE/OgreMath.h"
 #include "MyFrameListener.h"
+#include "CylindricalEffect.h"
 
 class MyApplication
 {
 private:
 	Ogre::SceneManager* _sceneManager;
 	Ogre::Root* _root;
-	Ogre::SceneNode* _SinbadNode;
-	Ogre::Entity* _myOgre;
+	Ogre::Entity* _SinbadEnt;
 	Ogre::Entity* _myCube;
+	Ogre::SceneNode* _SinbadNode;
+	Ogre::SceneNode* cubenode;
 	MyFrameListener* _listener;
+	CylindricalEffect* _ceffect;
 	bool _keepRunning;
 
 public:
