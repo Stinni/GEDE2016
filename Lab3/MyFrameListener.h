@@ -1,11 +1,4 @@
 #pragma once
-#include "OGRE/OgreRoot.h"
-#include "OGRE/OgreSceneManager.h"
-#include "OGRE/OgreSceneNode.h"
-#include "OGRE/OgreRenderWindow.h"
-#include "OGRE/OgreConfigFile.h"
-#include "OGRE/OgreEntity.h"
-#include "OIS/OIS.h"
 #include "CylindricalEffect.h"
 
 class MyFrameListener : public Ogre::FrameListener

@@ -1,6 +1,4 @@
 #pragma once
-#include "OGRE/OgreSceneNode.h"
-#include "OGRE/OgreEntity.h"
 
 class CylindricalEffect
 {
