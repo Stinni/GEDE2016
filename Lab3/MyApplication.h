@@ -1,3 +1,4 @@
+#pragma once
 #include "OGRE/OgreRoot.h"
 #include "OGRE/OgreSceneManager.h"
 #include "OGRE/OgreSceneNode.h"

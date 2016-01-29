@@ -13,19 +13,10 @@ CylindricalEffect::~CylindricalEffect()
 
 Ogre::Vector3 CylindricalEffect::getCartesian()
 {
-	float oldX = _position.x;
+	float x = _position.x * Ogre::Math::Cos(_position.z);
 	float y = _position.y;
-	float oldZ = _position.z;
-	float radius = sqrt(oldX*oldX+oldZ*oldZ);
-	float alpha = Ogre::Math::ATan(oldZ/oldX);
-	// Ogre::Math::Cos()
-	// Ogre::Math::Sin()
-	//X coordinate = cosine of the angle times the radius
-	float newX = Ogre::Math::Cos(alpha) * radius;
-	//Z Coordinate = sin(angle) times the radius
-	float newZ = Ogre::Math::Sin(alpha) * radius;
-	return Ogre::Vector3(newX, y, newZ);
-	Ogre::Math::DegreesToRadians();
+	float z = _position.x * Ogre::Math::Sin(_position.z);
+	return Ogre::Vector3(x, y, z);
 }
 
 void CylindricalEffect::update(float dt) {

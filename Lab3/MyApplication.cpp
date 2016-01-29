@@ -77,12 +77,12 @@ void MyApplication::createScene()
 	_myCube = _sceneManager->createEntity("Cube.mesh");
 	cubenode = _SinbadEnt->getParentSceneNode()->createChildSceneNode();
 	cubenode->attachObject(_myCube);
-
+	
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
 	ground->setMaterialName("Examples/BeachStones");
 
-	cubenode->scale(0.03f, 0.03f, 0.03f);
-	cubenode->setPosition(0.5f, 3.5f, 0.0f);
+	cubenode->scale(0.01f, 0.01f, 0.01f);
+	cubenode->setPosition(5.0f, 2.5f, 0.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
@@ -94,8 +94,8 @@ void MyApplication::createScene()
 	plight->setType(Ogre::Light::LT_POINT);
 	cubenode->attachObject(plight);
 
-	_ceffect = new CylindricalEffect(_myCube, Ogre::Vector3(0.5f, 3.5f, 0.0f),
-		Ogre::Vector3(0.5f, 0.0f, 0.0f));
+	_ceffect = new CylindricalEffect(_myCube, cubenode->getPosition(),
+		Ogre::Vector3(0.0f, 0.0f, 2.5f));
 }
 
 void MyApplication::renderOneFrame()
