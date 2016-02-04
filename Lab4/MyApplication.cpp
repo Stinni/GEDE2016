@@ -43,7 +43,7 @@ int MyApplication::startup()
 		return -1;
 	}
 
-	Ogre::RenderWindow* window = _root->initialise(true, "Ogre3D Beginners Guide - Lab3");
+	Ogre::RenderWindow* window = _root->initialise(true, "Ogre3D Beginners Guide - Lab4");
 
 	_sceneManager = _root->createSceneManager(Ogre::ST_GENERIC);
 	Ogre::Camera* camera = _sceneManager->createCamera("Camera");
@@ -80,9 +80,15 @@ void MyApplication::createScene()
 	
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
 	ground->setMaterialName("Examples/BeachStones");
-
+	
 	cubenode->scale(0.01f, 0.01f, 0.01f);
 	cubenode->setPosition(5.0f, 2.5f, 0.0f);
+
+	Ogre::Entity* myModel = _sceneManager->createEntity("Ceramic_Cup", "E:/GEDE2016/LabFiles/Models/Ceramic_Cup.mesh");
+	Ogre::SceneNode* modelNode =_sceneManager->getRootSceneNode()->createChildSceneNode();
+	modelNode->attachObject(myModel);
+	modelNode->setScale(0.2f, 0.2f, 0.2f);
+	modelNode->setPosition(10.0f, 0.0f, 10.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);

@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CylindricalEffect.cpp" />
-    <ClCompile Include="Lab3.cpp" />
+    <ClCompile Include="Lab4.cpp" />
     <ClCompile Include="MyApplication.cpp" />
     <ClCompile Include="MyFrameListener.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -27,7 +27,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{567BB3FF-BE72-4DAE-B091-5AD8AACC3748}</ProjectGuid>
+    <ProjectGuid>{F9D16AC0-EDE2-4973-AD1A-74034EFCCA26}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Lab4</RootNamespace>
   </PropertyGroup>
