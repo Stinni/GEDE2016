@@ -84,11 +84,11 @@ void MyApplication::createScene()
 	cubenode->scale(0.01f, 0.01f, 0.01f);
 	cubenode->setPosition(5.0f, 2.5f, 0.0f);
 
-	Ogre::Entity* myModel = _sceneManager->createEntity("Ceramic_Cup", "E:/GEDE2016/LabFiles/Models/Ceramic_Cup.mesh");
+	Ogre::Entity* myModel = _sceneManager->createEntity("My_Crappy_Star", "My_Crappy_Star/My_Crappy_Star.mesh");
 	Ogre::SceneNode* modelNode =_sceneManager->getRootSceneNode()->createChildSceneNode();
 	modelNode->attachObject(myModel);
-	modelNode->setScale(0.2f, 0.2f, 0.2f);
-	modelNode->setPosition(10.0f, 0.0f, 10.0f);
+	modelNode->setScale(1.5f, 1.5f, 1.5f);
+	modelNode->setPosition(10.0f, -1.0f, 10.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
