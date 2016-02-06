@@ -6,7 +6,7 @@ material My_Crappy_Star
 
     technique
     {
-        pass My_Crappy_Star
+        pass
         {
             ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
             diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
@@ -40,7 +40,7 @@ material BlueMaterial
 
     technique
     {
-        pass BlueMaterial
+        pass
         {
             ambient 0.3 0.3 0.3 1.0
             diffuse 0.1 0.2 0.7 1.0
@@ -73,7 +73,7 @@ material RedMaterial
 
     technique
     {
-        pass RedMaterial
+        pass
         {
             ambient 0.3 0.1 0.1 1.0
             diffuse 0.8 0.05 0.05 1.0
