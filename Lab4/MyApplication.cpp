@@ -84,11 +84,29 @@ void MyApplication::createScene()
 	cubenode->scale(0.01f, 0.01f, 0.01f);
 	cubenode->setPosition(5.0f, 2.5f, 0.0f);
 
-	Ogre::Entity* myModel = _sceneManager->createEntity("My_Crappy_Star", "My_Crappy_Star/My_Crappy_Star.mesh");
-	Ogre::SceneNode* modelNode =_sceneManager->getRootSceneNode()->createChildSceneNode();
-	modelNode->attachObject(myModel);
-	modelNode->setScale(1.5f, 1.5f, 1.5f);
-	modelNode->setPosition(10.0f, -1.0f, 10.0f);
+	//Ogre::Entity* myModel = _sceneManager->createEntity("Ceramic_Cup", "Ceramic_Cup.mesh");
+	Ogre::Entity* StarModel1 = _sceneManager->createEntity("My_Crappy_Star1", "My_Crappy_Star/My_Crappy_Star.mesh");
+	//Ogre::Entity* StarModel2 = _sceneManager->createEntity("My_Crappy_Star2", "My_Crappy_Star/My_Crappy_Star.mesh");
+	//Ogre::Entity* StarModel3 = _sceneManager->createEntity("My_Crappy_Star3", "My_Crappy_Star/My_Crappy_Star.mesh");
+	Ogre::Entity* StarModel4 = _sceneManager->createEntity("My_Crappy_Star4", "My_Crappy_Star2/My_Crappy_Star.mesh");
+	//StarModel2->setMaterialName("BlueMaterial");
+	//StarModel3->setMaterialName("RedMaterial");
+	Ogre::SceneNode* starNode1 =_sceneManager->getRootSceneNode()->createChildSceneNode();
+	//Ogre::SceneNode* starNode2 =_sceneManager->getRootSceneNode()->createChildSceneNode();
+	//Ogre::SceneNode* starNode3 =_sceneManager->getRootSceneNode()->createChildSceneNode();
+	Ogre::SceneNode* starNode4 =_sceneManager->getRootSceneNode()->createChildSceneNode();
+	starNode1->attachObject(StarModel1);
+	//starNode2->attachObject(StarModel2);
+	//starNode3->attachObject(StarModel3);
+	starNode4->attachObject(StarModel4);
+	starNode1->setScale(1.2f, 1.2f, 1.2f);
+	//starNode2->setScale(1.2f, 1.2f, 1.2f);
+	//starNode3->setScale(1.2f, 1.2f, 1.2f);
+	starNode4->setScale(1.2f, 1.2f, 1.2f);
+	starNode1->setPosition(10.0f, -1.5f, 10.0f);
+	//starNode2->setPosition(-10.0f, -1.5f, -10.0f);
+	//starNode3->setPosition(10.0f, -1.5f, -10.0f);
+	starNode4->setPosition(-10.0f, -1.5f, 10.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
