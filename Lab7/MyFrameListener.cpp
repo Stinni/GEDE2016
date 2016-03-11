@@ -1,13 +1,12 @@
 #include "MyFrameListener.h"
 
 MyFrameListener::MyFrameListener(Ogre::RenderWindow* win, Ogre::Camera* cam, Ogre::SceneNode* node,
-								 Ogre::Entity* ent, CylindricalEffect* ceffect)
+								 Ogre::Entity* ent)
 {
 	_Cam = cam;
 	_node = node;
 	_movementspeed = 50.0f;
 	_WalkingSpeed = 50.0f;
-	_ceffect = ceffect;
 	OIS::ParamList parameters;
 	unsigned int windowHandle = 0;
 	std::ostringstream windowHandleString;
@@ -121,8 +120,6 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt)
 	_node->translate(SinbadTranslate * evt.timeSinceLastFrame * _WalkingSpeed);
 	_node->resetOrientation();
 	_node->yaw(Ogre::Radian(_rotation));
-
-	_ceffect->update(evt.timeSinceLastFrame);
 
 	return true;
 }

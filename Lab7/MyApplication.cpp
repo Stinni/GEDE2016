@@ -5,13 +5,12 @@ MyApplication::MyApplication()
 	_sceneManager = NULL;
 	_root = NULL;
 	_listener = NULL;
-	_ceffect = NULL;
 }
+
 MyApplication::~MyApplication()
 {
 	delete _root;
 	delete _listener;
-	delete _ceffect;
 }
 
 void MyApplication::loadResources()
@@ -58,7 +57,7 @@ int MyApplication::startup()
 
 	loadResources();
 	createScene();
-	_listener = new MyFrameListener(window, camera, _SinbadNode, _SinbadEnt, _ceffect);
+	_listener = new MyFrameListener(window, camera, _SinbadNode, _SinbadEnt);
 	_root->addFrameListener(_listener);
 
 	return 0;
@@ -69,33 +68,23 @@ void MyApplication::createScene()
 	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, -5);
 	Ogre::MeshManager::getSingleton().createPlane("plane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		plane, 1500, 1500, 200, 200, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
-	Ogre::Entity* ground = _sceneManager->createEntity("LightPlaneEntity", "plane");
+	Ogre::Entity* _ground = _sceneManager->createEntity("LightPlaneEntity", "plane");
 	_SinbadEnt = _sceneManager->createEntity("Sinbad.mesh");
-	//printAnimations(_SinbadEnt);
 	_SinbadNode = _sceneManager->getRootSceneNode()->createChildSceneNode();
 	_SinbadNode->attachObject(_SinbadEnt);
-	_myCube = _sceneManager->createEntity("Cube.mesh");
-	cubenode = _SinbadEnt->getParentSceneNode()->createChildSceneNode();
-	cubenode->attachObject(_myCube);
 	
-	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
-	ground->setMaterialName("Examples/BeachStones");
-
-	cubenode->scale(0.01f, 0.01f, 0.01f);
-	cubenode->setPosition(5.0f, 2.5f, 0.0f);
+	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(_ground);
+	_ground->setMaterialName("shader/orange");
+	_SinbadEnt->setMaterialName("shader/orange");
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDirection(Ogre::Vector3(1, -1, 0));
 	_sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-	//_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
 
 	Ogre::Light* plight = _sceneManager->createLight("Light2");
 	plight->setType(Ogre::Light::LT_POINT);
-	cubenode->attachObject(plight);
-
-	_ceffect = new CylindricalEffect(_myCube, cubenode->getPosition(),
-		Ogre::Vector3(0.0f, 0.0f, 2.5f));
 }
 
 void MyApplication::renderOneFrame()
@@ -107,14 +96,4 @@ void MyApplication::renderOneFrame()
 bool MyApplication::keepRunning()
 {
 	return _keepRunning;
-}
-
-void MyApplication::printAnimations(Ogre::Entity* ent)
-{
-	// Print out all available animation names for _SinbadEnt.
-	Ogre::AnimationStateIterator iter = ent->getAllAnimationStates()->getAnimationStateIterator();
-	while (iter.hasMoreElements()) {
-		Ogre::AnimationState *a = iter.getNext();
-		std::cout << a->getAnimationName() << std::endl;
-	}
 }

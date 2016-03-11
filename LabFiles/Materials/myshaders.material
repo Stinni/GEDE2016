@@ -1,0 +1,17 @@
+fragment_program shader/orangeFP cg {
+    source diffuseshader.cg
+    entry_point main_orange_fp
+    profiles ps_1_1 arbfp1 
+    
+}
+
+material shader/orange {
+    technique {
+        pass {           
+            fragment_program_ref shader/orangeFP {
+            }       
+            texture_unit {       
+            }             
+        }
+    }
+}
