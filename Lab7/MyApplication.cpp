@@ -69,19 +69,32 @@ void MyApplication::createScene()
 	Ogre::MeshManager::getSingleton().createPlane("plane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		plane, 1500, 1500, 200, 200, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
 	Ogre::Entity* _ground = _sceneManager->createEntity("LightPlaneEntity", "plane");
+	Ogre::Plane water(Ogre::Vector3::UNIT_Y, 0.0f);
+	Ogre::MeshManager::getSingleton().createPlane("AnimatedWater", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+		water, 30, 30, 40, 40, true, 1, 10, 10, Ogre::Vector3::UNIT_Z);
+	Ogre::Entity* waterEnt = _sceneManager->createEntity("waterEntity", "AnimatedWater");
+	waterEnt->setMaterialName("shader/timeTexture");
+	_sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, -40))->attachObject(waterEnt);
+	Ogre::Entity* _sphereEnt = _sceneManager->createEntity("mySphere", Ogre::SceneManager::PT_SPHERE);
+	_sphereEnt->setMaterialName("shader/lighting");
+	Ogre::SceneNode* _sphereNode = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 40));
+	_sphereNode->attachObject(_sphereEnt);
+	_sphereNode->setScale(Ogre::Vector3(.1f, .1f, .1f));
+
 	_SinbadEnt = _sceneManager->createEntity("Sinbad.mesh");
 	_SinbadNode = _sceneManager->getRootSceneNode()->createChildSceneNode();
 	_SinbadNode->attachObject(_SinbadEnt);
 	
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(_ground);
-	_ground->setMaterialName("shader/orange");
-	_SinbadEnt->setMaterialName("shader/orange");
+	_ground->setMaterialName("shader/texture");
+	//_SinbadEnt->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(0.0, 0.0, 1.0, 1.0));
+	//_SinbadEnt->setMaterialName("shader/custom");
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDirection(Ogre::Vector3(1, -1, 0));
 	_sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+	//_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
 
 	Ogre::Light* plight = _sceneManager->createLight("Light2");
 	plight->setType(Ogre::Light::LT_POINT);

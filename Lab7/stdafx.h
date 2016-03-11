@@ -10,3 +10,4 @@
 #include "OGRE/OgreMeshManager.h"
 #include "OGRE/OgreMath.h"
 #include "OIS/OIS.h"
+#include "OGRE/OgreSubEntity.h"
