@@ -69,17 +69,23 @@ void MyApplication::createScene()
 	Ogre::MeshManager::getSingleton().createPlane("plane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		plane, 1500, 1500, 200, 200, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
 	Ogre::Entity* _ground = _sceneManager->createEntity("LightPlaneEntity", "plane");
+
+	// Create a plane of rippling water
 	Ogre::Plane water(Ogre::Vector3::UNIT_Y, 0.0f);
 	Ogre::MeshManager::getSingleton().createPlane("AnimatedWater", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		water, 30, 30, 40, 40, true, 1, 10, 10, Ogre::Vector3::UNIT_Z);
-	Ogre::Entity* waterEnt = _sceneManager->createEntity("waterEntity", "AnimatedWater");
-	waterEnt->setMaterialName("shader/timeTexture");
-	_sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, -40))->attachObject(waterEnt);
+	Ogre::Entity* _waterEnt = _sceneManager->createEntity("waterEntity", "AnimatedWater");
+	_sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, -40))->attachObject(_waterEnt);
+	// using the timeTexture material and shader for creating a primitive looking ripples
+	_waterEnt->setMaterialName("shader/timeTexture");
+
+	// Create a sphere entity and attach it to a scene node so it can be scaled and positioned
 	Ogre::Entity* _sphereEnt = _sceneManager->createEntity("mySphere", Ogre::SceneManager::PT_SPHERE);
-	_sphereEnt->setMaterialName("shader/lighting");
 	Ogre::SceneNode* _sphereNode = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 40));
 	_sphereNode->attachObject(_sphereEnt);
 	_sphereNode->setScale(Ogre::Vector3(.1f, .1f, .1f));
+	// using the saucy lighting material and shader for the sphere :)
+	_sphereEnt->setMaterialName("shader/lighting");
 
 	_SinbadEnt = _sceneManager->createEntity("Sinbad.mesh");
 	_SinbadNode = _sceneManager->getRootSceneNode()->createChildSceneNode();
@@ -87,6 +93,9 @@ void MyApplication::createScene()
 	
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(_ground);
 	_ground->setMaterialName("shader/texture");
+	/* commented out because poor Sinbad was feeling a bit too blue... :P
+	 * of course I could've changed the color but I liked him better as he was.
+	 * This sets the first parameter of the Sinbad entity which is then used as the color value for the custom shader */
 	//_SinbadEnt->getSubEntity(0)->setCustomParameter(1, Ogre::Vector4(0.0, 0.0, 1.0, 1.0));
 	//_SinbadEnt->setMaterialName("shader/custom");
 
@@ -94,7 +103,7 @@ void MyApplication::createScene()
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDirection(Ogre::Vector3(1, -1, 0));
 	_sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-	//_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
 
 	Ogre::Light* plight = _sceneManager->createLight("Light2");
 	plight->setType(Ogre::Light::LT_POINT);
