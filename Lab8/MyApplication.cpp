@@ -73,25 +73,34 @@ void MyApplication::createScene()
 	//printAnimations(_SinbadEnt);
 	_SinbadNode = _sceneManager->getRootSceneNode()->createChildSceneNode();
 	_SinbadNode->attachObject(_SinbadEnt);
-	_myCube = _sceneManager->createEntity("Cube.mesh");
-	cubenode = _SinbadEnt->getParentSceneNode()->createChildSceneNode();
-	cubenode->attachObject(_myCube);
-	
+
+	/*Ogre::ParticleSystem* _partSystem1 = _sceneManager->createParticleSystem("smoke", "MySmoke1");
+	Ogre::SceneNode* _smokeNode1 = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(50,50,50));
+	_smokeNode1->attachObject(_partSystem1);*/
+
+	Ogre::ParticleSystem* _partSystem2 = _sceneManager->createParticleSystem("snow", "MySnow");
+	Ogre::SceneNode* _snowNode = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0,0,0));
+	_snowNode->attachObject(_partSystem2);
+
+	Ogre::ParticleSystem* _partSystem3 = _sceneManager->createParticleSystem("fountain", "MyFountain");
+	Ogre::SceneNode* _fountainNode = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(-50,0,-50));
+	_fountainNode->attachObject(_partSystem3);
+
+	/*Ogre::ParticleSystem* _partSystem4 = _sceneManager->createParticleSystem("fountain2", "Examples/PurpleFountain");
+	Ogre::SceneNode* _fountainNode2 = _sceneManager->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(50,0,-50));
+	_fountainNode2->attachObject(_partSystem4);*/
+
 	_sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ground);
 	ground->setMaterialName("Examples/BeachStones");
-
-	cubenode->scale(0.01f, 0.01f, 0.01f);
-	cubenode->setPosition(5.0f, 2.5f, 0.0f);
 
 	Ogre::Light* light = _sceneManager->createLight("Light1");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDirection(Ogre::Vector3(1, -1, 0));
 	_sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-	//_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
+	_sceneManager->setAmbientLight(Ogre::ColourValue(.3f,.3f,.3f));
 
 	Ogre::Light* plight = _sceneManager->createLight("Light2");
 	plight->setType(Ogre::Light::LT_POINT);
-	cubenode->attachObject(plight);
 }
 
 void MyApplication::renderOneFrame()

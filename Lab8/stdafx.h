@@ -9,4 +9,5 @@
 #include "OGRE/OgreWindowEventUtilities.h"
 #include "OGRE/OgreMeshManager.h"
 #include "OGRE/OgreMath.h"
+#include "OGRE/OgreParticleSystem.h"
 #include "OIS/OIS.h"
